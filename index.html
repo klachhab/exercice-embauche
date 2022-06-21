@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Exercice HTML, CSS et JS</title>
+</head>
+
+<body>
+
+    <div class="p-4 mb-10">
+
+        <div class="flex w-full p-4 mb-8 rounded shadow">
+            <table class="border-collapse table-auto w-full text-sm">
+                <thead>
+                    <tr>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            id
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Date de création
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Etat
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Nom
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Prénom
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Nom d'utilisateur
+                        </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Matricule
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="user-list" class="bg-white">
+
+                    <tr class="infos-row">
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            123456789
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            01/06/2021
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            <span class="w-full p-1.5 rounded bg-[#FDB64D] text-white">En validation</span>
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            Mohamed
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            Taha
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            mtaha
+                        </td>
+                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
+                            2584
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <button id="addBtn" class="bg-green-500 hover:bg-green-600 transition-colors py-2 px-3 text-white rounded">
+            Ajouter un utilisateur
+        </button>
+
+        <form class="mx-10 mt-10 grid grid-cols-6 gap-4" action="#" id="formData">
+
+            <div class="col-span-2">
+                <label for="last-name" class="block text-sm font-medium text-slate-600">Nom</label>
+                <input type="text" id="last-name" name="last-name"
+                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+            </div>
+
+            <div class="col-span-2">
+                <label for="first-name" class="block text-sm font-medium text-slate-600">Prénom</label>
+                <input type="text" id="first-name" name="first-name" 
+                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+            </div>
+
+            <div class="col-span-2">
+                <label for="status" class="block text-sm font-medium text-slate-600">État</label>
+                <select id="status" name="status"
+                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                    <option value="En validation">En validation</option>
+                    <option value="Validé">Validé</option>
+                    <option value="Rejeté">Rejeté</option>
+                </select>
+            </div>
+
+            <div class="col-span-2">
+                <label for="username" class="block text-sm font-medium text-slate-600">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username"
+                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+            </div>
+
+            <div class="col-span-2">
+                <label for="created_at" class="block text-sm font-medium text-slate-600">Date de création</label>
+                <input type="date" name="created_at" id="created_at" class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+            </div>
+
+            <div class="col-span-2">
+                <label for="registration" class="block text-sm font-medium text-slate-600">Matricule</label>
+                <input type="text" id="registration"
+                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+            </div>
+
+            <button type="submit" class="mt-3 bg-green-500 hover:bg-green-600 transition-colors py-2 text-white rounded">
+                Enregistrer
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <script src="./script.js" />
+    </body>
+
+</html>
