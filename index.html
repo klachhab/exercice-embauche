@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/regular.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+
     <link rel="stylesheet" href="./style.css">
 
     <title>Exercice HTML, CSS et JS</title>
@@ -13,10 +16,10 @@
 
 <body>
 
-    <div class="p-4 mb-10">
+    <div class="p-4 mb-10 grid grid-cols-1">
 
-        <div class="flex w-full p-4 mb-8 rounded shadow">
-            <table class="border-collapse table-auto w-full text-sm">
+        <div class="flex p-4 m-8 rounded shadow">
+            <table id="users-table" class="border-collapse table-auto w-full text-sm">
                 <thead>
                     <tr>
                         <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
@@ -40,92 +43,167 @@
                         <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
                             Matricule
                         </th>
+                        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 text-left">
+                            Action <i class="fa-regular fa-trash-can"></i>
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody id="user-list" class="bg-white">
-
-                    <tr class="infos-row">
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            123456789
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            01/06/2021
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            <span class="w-full p-1.5 rounded bg-[#FDB64D] text-white">En validation</span>
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            Mohamed
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            Taha
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            mtaha
-                        </td>
-                        <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">
-                            2584
-                        </td>
+                    <tr>
+                        <td></td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
 
-        <button id="addBtn" class="bg-green-500 hover:bg-green-600 transition-colors py-2 px-3 text-white rounded">
+        <button id="addBtn" onclick="toggleModal(true)"
+            class="bg-green-500 hover:bg-green-600 transition mx-8 py-2 px-3 text-white rounded place-self-end">
             Ajouter un utilisateur
         </button>
 
-        <form class="mx-10 mt-10 grid grid-cols-6 gap-4" action="#" id="formData">
 
-            <div class="col-span-2">
-                <label for="last-name" class="block text-sm font-medium text-slate-600">Nom</label>
-                <input type="text" id="last-name" name="last-name"
-                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-            </div>
 
-            <div class="col-span-2">
-                <label for="first-name" class="block text-sm font-medium text-slate-600">Prénom</label>
-                <input type="text" id="first-name" name="first-name" 
-                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-            </div>
+        <!-- User Form 
+        <div id="modal" class="mx-10 mt-10">
+            <form class="grid grid-cols-6 gap-4" action="#" id="form" onsubmit="event.preventDefault()">
 
-            <div class="col-span-2">
-                <label for="status" class="block text-sm font-medium text-slate-600">État</label>
-                <select id="status" name="status"
-                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-                    <option value="En validation">En validation</option>
-                    <option value="Validé">Validé</option>
-                    <option value="Rejeté">Rejeté</option>
-                </select>
-            </div>
+                
+                <div class="col-span-2">
+                    <label for="createdDate" class="block text-sm font-medium text-slate-600">Date de création</label>
+                    <input format="dd-mm-yyyy" type="date" name="createdDate" id="createdDate"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
 
-            <div class="col-span-2">
-                <label for="username" class="block text-sm font-medium text-slate-600">Nom d'utilisateur</label>
-                <input type="text" id="username" name="username"
-                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-            </div>
 
-            <div class="col-span-2">
-                <label for="created_at" class="block text-sm font-medium text-slate-600">Date de création</label>
-                <input type="date" name="created_at" id="created_at" class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-            </div>
+                <div class="col-span-2">
+                    <label for="status" class="block text-sm font-medium text-slate-600">État</label>
+                    <select id="status" name="status"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                        <option value="En validation">En validation</option>
+                        <option value="Validé">Validé</option>
+                        <option value="Rejeté">Rejeté</option>
+                    </select>
+                </div>
 
-            <div class="col-span-2">
-                <label for="registration" class="block text-sm font-medium text-slate-600">Matricule</label>
-                <input type="text" id="registration"
-                    class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
-            </div>
 
-            <button type="submit" class="mt-3 bg-green-500 hover:bg-green-600 transition-colors py-2 text-white rounded">
+                <div class="col-span-2">
+                    <label for="lastName" class="block text-sm font-medium text-slate-600">Nom</label>
+                    <input type="text" id="lastName" name="lastName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+
+                <div class="col-span-2">
+                    <label for="firstName" class="block text-sm font-medium text-slate-600">Prénom</label>
+                    <input type="text" id="firstName" name="firstName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+
+                <div class="col-span-2">
+                    <label for="userName" class="block text-sm font-medium text-slate-600">Nom d'utilisateur</label>
+                    <input type="text" id="userName" name="userName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+
+                <div class="col-span-2">
+                    <label for="registrationNumber" class="block text-sm font-medium text-slate-600">Matricule</label>
+                    <input type="text" id="registrationNumber" name="registrationNumber"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+            </form>
+
+            <button class="mt-3 bg-green-500 hover:bg-green-600 transition-colors px-4 py-2 text-white rounded"
+                onclick="submitForm()">
                 Enregistrer
             </button>
-
-        </form>
+        </div>
+    -->
 
     </div>
 
+
+
+    <div id="modal_overlay"
+        class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-center"
+    >
+        <div class="w-full rounded bg-white mx-80 p-10 -translate-y-20">
+
+            <!-- Header -->
+            <div class="w-full flex justify-between mb-8 pb-6 border-b border-gray-200">
+                <span class="text-xl select-none font-semibold text-slate-700">
+                    Ajouter un utilisateur
+                </span>
+            </div>
+
+            <!-- Form -->
+            <form class="grid grid-cols-6 gap-4" action="#" id="form" onsubmit="event.preventDefault()">
+    
+                <!-- Date de création -->
+                <div class="col-span-2">
+                    <label for="createdDate" class="block text-sm font-medium text-slate-600">Date de création</label>
+                    <input format="dd-mm-yyyy" type="date" name="createdDate" id="createdDate"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+                <!-- Etat -->
+                <div class="col-span-2">
+                    <label for="status" class="block text-sm font-medium text-slate-600">État</label>
+                    <select id="status" name="status"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                        <option value="En validation">En validation</option>
+                        <option value="Validé">Validé</option>
+                        <option value="Rejeté">Rejeté</option>
+                    </select>
+                </div>
+
+                <!-- Nom -->
+                <div class="col-span-2">
+                    <label for="lastName" class="block text-sm font-medium text-slate-600">Nom</label>
+                    <input type="text" id="lastName" name="lastName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+                <!-- Prénom -->
+                <div class="col-span-2">
+                    <label for="firstName" class="block text-sm font-medium text-slate-600">Prénom</label>
+                    <input type="text" id="firstName" name="firstName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+                <!-- Nom d'utilisateur -->
+                <div class="col-span-2">
+                    <label for="userName" class="block text-sm font-medium text-slate-600">Nom d'utilisateur</label>
+                    <input type="text" id="userName" name="userName"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+                <!-- Matricule -->
+                <div class="col-span-2">
+                    <label for="registrationNumber" class="block text-sm font-medium text-slate-600">Matricule</label>
+                    <input type="text" id="registrationNumber" name="registrationNumber"
+                        class="mt-1 transition-all focus:outline-none focus:ring-1 focus:ring-blue-300 p-2 block w-full border border-gray-200 focus:border-blue-300 rounded  text-slate-600">
+                </div>
+
+            </form>
+
+            <div class="flex gap-x-2 border-t border-gray-200 mt-12">
+                <button class="mt-6 bg-green-500 hover:bg-green-600 transition-colors px-4 py-2 text-white rounded"
+                    onclick="submitForm()">
+                    Enregistrer
+                </button>
+
+                <button class="mt-6 bg-red-500 hover:bg-red-600 transition-colors px-4 py-2 text-white rounded"
+                    onclick="toggleModal(false)">
+                    Annuler
+                </button>
+            </div>
+
+        </div>
+    </div>
 
 
     <script src="./script.js" />
